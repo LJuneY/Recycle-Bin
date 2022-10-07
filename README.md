@@ -1,7 +1,9 @@
 # Recycle-Bin
 
 ## 用法
-
+my_rm：回收
+my_fr：恢复
+my_autodel：自动永久删除（需结合cron使用）
 参考[Bash脚本](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php)和[cron](https://www.runoob.com/w3cnote/linux-crontab-tasks.html)的介绍。
 
 ## 记录一下我的思考
