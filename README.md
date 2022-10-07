@@ -1,17 +1,12 @@
 # Recycle-Bin
-## 用法
-参考[Bash脚本](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php)的介绍。
-```bash
-   #（以文件a为例）
-   my_rm ./××/.../a #将文件a移到回收站
-   my_fm ~/××/.../a #将回收站目录a下的原文件恢复到其原路径
-   # 要把这两个脚本所在的路径添加到PATH环境变量后才能直接这样用，否则使用时还要指明脚本所在的路径
- ```
 
-将my_autodel脚本添加到[cron](https://www.runoob.com/w3cnote/linux-crontab-tasks.html)相应的配置文件中。
+## 用法
+
+参考[Bash脚本](https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php)和[cron](https://www.runoob.com/w3cnote/linux-crontab-tasks.html)的介绍。
 
 ## 记录一下我的思考
 ### 概览
+&emsp;前两个星期学习Linux和Bash，我发现`rm`命令是直接永久删除文件，而Linux的命令行并没有一个类似回收站的机制。为了我的学习更加有趣和高效，我打算用Bash脚本实现一个简易的类似回收站的功能。  
 &emsp;把文件移到回收站与直接永久删除文件（`rm`命令）的不同在于，当我们后悔删除文件这一行为时，还可以从回收站中找出该文件，恢复到原路径。所以，回收站首先需要占用系统中的一部分存储空间，用以暂存我们可能想恢复的文件。同时，既然是删除文件，这些被移动到回收站的文件不能越积越多，需要系统定期清理在回收站内超过一定时间阈值的文件，留出能继续使用的足够的空间。
 
 ![1](images/1.jpg)
