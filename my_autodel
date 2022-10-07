@@ -1,0 +1,19 @@
+#!/bin/bash
+
+Treshold=30 
+CurrentTime=$(date +%s)
+Files=$(ls ~/recycle_bin)
+echo $Files #test
+for File in $Files
+do
+	read DeleteTime <  ~/recycle_bin/$File/delete_time
+	echo $DeleteTime #test
+	let TimeInterval=$CurrentTime-$DeleteTime
+	echo $TimeInterval #test
+	if [ $TimeInterval -gt $Treshold ]
+	then
+		rm -r ~/recycle_bin/$File
+		echo rm #test
+	fi
+done
+

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+FilePath=$@
+if [ -d $FilePath ] || [ -e $FilePath ]
+then
+#	system time
+	DeleteTime_Compute=$(date +%s)
+	DeleteTime_Display=$(date +'%Y_%m_%d_%H_%M_%S') #do not add space or slash
+	echo $DeleteTime_Compute #test
+	echo $DeleteTime_Display #test
+
+#	file path&name
+#	FilePath=$@
+	FileName=${FilePath##*/}
+	echo $FilePath #test
+	echo $FileName #test
+
+#	create a new directory & move the file to the that directory
+	NewDir=~/recycle_bin/"$FileName"_"${DeleteTime_Display}" # choose the format that is user-friendly
+
+	echo $NewDir #test
+	mkdir -p $NewDir
+	mv $FilePath $NewDir 
+	ls ~ #test
+	ls ~/recycle_bin #test
+	ls $NewDir #tset
+
+	#record the original path & deletion time(easy to compute)
+	AbsolutePath=$(realpath $FilePath) # obtain the corresponding absolute path
+	echo $AbsolutePath #test
+	touch $NewDir/original_path
+	echo $AbsolutePath > $NewDir/original_path
+	touch $NewDir/delete_time
+	echo $DeleteTime_Compute > $NewDir/delete_time
+	cat $NewDir/original_path #test
+	cat $NewDir/delete_time #test
+else
+	echo $FilePath does not exist
+fi

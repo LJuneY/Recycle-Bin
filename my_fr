@@ -1,0 +1,22 @@
+#!/bin/bash
+
+FilePath=$@
+FileName=${FilePath##*/}
+if [ -d ~/recycle_bin/$FileName ]
+then
+	OriginalPath=$(cat ~/recycle_bin/$FileName/original_path)
+	echo $OriginalPath #test
+	rm ~/recycle_bin/$FileName/original_path
+	rm ~/recycle_bin/$FileName/delete_time
+	OriginalFileName=$(ls ~/recycle_bin/$FileName)
+	echo $OriginalFileName #test
+
+	mv ~/recycle_bin/$FileName/$OriginalFileName $OriginalPath
+#	ls $OriginalPath/.. #test
+
+	rm -r ~/recycle_bin/$FileName
+	ls ~/recycle_bin #test
+else
+	echo $FilePath does not exist
+fi
+
